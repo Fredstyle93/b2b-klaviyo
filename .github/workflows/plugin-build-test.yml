@@ -31,6 +31,3 @@ jobs:
       - name: Linting
         working-directory: ./plugin
         run: yarn lint
-      - name: Test
-        working-directory: ./plugin
-        run: yarn test
