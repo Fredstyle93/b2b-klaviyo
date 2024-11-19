@@ -69,10 +69,10 @@
     "dotenv": "^16.0.3",
     "express": "^4.21.1",
     "klaviyo-api": "^3.0.0",
-    "micromatch": "^4.0.8",
     "winston": "^3.8.2"
   },
   "resolutions": {
+    "micromatch": "^4.0.8",
     "braces": "^3.0.3",
     "cross-spawn": "^7.0.5"
   }
