@@ -76,7 +76,7 @@
     "braces": "^3.0.3",
     "cross-spawn": "^7.0.5"
   },
-  "overrides": {
+    "overrides": {
     "esbuild": "^0.24.0"
   }
 }
