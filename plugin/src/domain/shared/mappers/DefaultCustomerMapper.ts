@@ -1,10 +1,27 @@
 import { Address, Customer } from '@commercetools/platform-sdk';
 import { CustomerMapper } from './CustomerMapper';
 import { mapAllowedProperties } from '../../../utils/property-mapper';
-
 const E_164_REGEX = /^\+[1-9]\d{10,14}$/;
-
 export class DefaultCustomerMapper implements CustomerMapper {
+    mapCtCustomerToKlaviyoEvent(customer: Customer, metric: string): EventRequest {
+        return {
+            data: {
+                type:'event',
+                attributes: {
+                    profile:{
+                        $email: customer.email,
+                    },
+                    metric:{
+                        name: metric,
+                    },
+                    value: 0,
+                    properties: {},
+                    unique_id: customer.id,
+                    time: new Date().toDateString(),
+                }
+            }
+        }
+    }
     public mapCtCustomerToKlaviyoProfile(customer: Customer, klaviyoProfileId?: string): ProfileRequest {
         const address = this.getCTCustomerAddressForKlaviyo(customer);
         const {
@@ -17,7 +34,6 @@ export class DefaultCustomerMapper implements CustomerMapper {
             custom,
         } = customer;
         const props = mapAllowedProperties('customer.customFields', { ...(custom?.fields || {}) });
-
         return {
             data: {
                 type: 'profile',
@@ -36,7 +52,6 @@ export class DefaultCustomerMapper implements CustomerMapper {
             },
         };
     }
-
     public mapCTAddressToKlaviyoLocation(address?: Address, useSpecialPrefix = false): KlaviyoLocation | null {
         const specialPrefix = useSpecialPrefix ? '$' : '';
         return address
@@ -50,7 +65,6 @@ export class DefaultCustomerMapper implements CustomerMapper {
               }
             : null;
     }
-
     public getAddressLine1(address?: Address): string | null{
         return address
             ? [address.apartment, address.building, address.streetNumber, address.streetName]
@@ -58,13 +72,11 @@ export class DefaultCustomerMapper implements CustomerMapper {
                   .join(', ')
             : null;
     }
-
     public getAddressLine2(address?: Address): string | null {
         return address
             ? [address.additionalStreetInfo, address.additionalAddressInfo].filter((element) => element).join(', ')
             : null;
     }
-
     // No longer in use, validation only handled by Klaviyo.
     // Phone number removed in worse case scenario.
     public getPhoneNumber(address?: Address): string | null {
@@ -75,7 +87,6 @@ export class DefaultCustomerMapper implements CustomerMapper {
         }
         return null;
     }
-
     /**
      * A CT customer can have multiple addresses, klaviyo accepts only one address information in the location field.
      * This method selects one of the CT addresses to be used to populate the klaviyo location info for a klaviyo profile.
