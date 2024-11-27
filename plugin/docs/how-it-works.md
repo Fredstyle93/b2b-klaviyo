@@ -10,6 +10,7 @@
 *Subscription*: `CustomerCreated` message  
 *Action*: [profile created](https://developers.klaviyo.com/en/reference/create_profile) in klaviyo
 
+
 #### Fields mapping
 
 | CT Customer                                                                   | Klaviyo Profile   |
