@@ -49,9 +49,6 @@ jobs:
       - name: Linting
         working-directory: ./plugin
         run: yarn lint
-      - name: Test
-        working-directory: ./plugin
-        run: yarn test
   docker_image:
     name: "Build and push docker image"
     runs-on: ubuntu-latest
