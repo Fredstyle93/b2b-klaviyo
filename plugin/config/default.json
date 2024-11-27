@@ -3,13 +3,11 @@
   "order": {
     "states": {
       "changed": {
-        "readyToBePickedUp": [
-          "Confirmed"
-        ],
         "cancelledOrder": [
           "Cancelled"
         ],
         "fulfilledOrder": [
+          "Confirmed",
           "Complete"
         ]
       },
@@ -35,7 +33,6 @@
       "map": {}
     },
     "metrics": {
-      "readyToBePickedUp": "Ready To Pick Up Order",
       "cancelledOrder": "Cancelled Order",
       "fulfilledOrder": "Fulfilled Order",
       "placedOrder": "Placed Order",
@@ -52,9 +49,6 @@
   },
   "customer": {
     "messages": {
-      "customerCreated": [
-        "CustomerCreated"
-      ],
       "addressChanged": [
         "CustomerAddressAdded",
         "CustomerAddressRemoved",
@@ -67,9 +61,6 @@
         "exclude": [],
         "map": {}
       }
-    },
-    "metrics": {
-      "customerCreated": "Customer Created"
     }
   },
   "payment": {

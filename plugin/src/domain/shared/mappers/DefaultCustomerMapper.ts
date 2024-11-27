@@ -5,25 +5,6 @@ import { mapAllowedProperties } from '../../../utils/property-mapper';
 const E_164_REGEX = /^\+[1-9]\d{10,14}$/;
 
 export class DefaultCustomerMapper implements CustomerMapper {
-    mapCtCustomerToKlaviyoEvent(customer: Customer, metric: string): EventRequest {
-        return {
-            data: {
-                type:'event',
-                attributes: {
-                    profile:{
-                        $email: customer.email,
-                    },
-                    metric:{
-                        name: metric,
-                    },
-                    value: 0,
-                    properties: {},
-                    unique_id: customer.id,
-                    time: new Date().toDateString(),
-                }
-            }
-        }
-    }
     public mapCtCustomerToKlaviyoProfile(customer: Customer, klaviyoProfileId?: string): ProfileRequest {
         const address = this.getCTCustomerAddressForKlaviyo(customer);
         const {
